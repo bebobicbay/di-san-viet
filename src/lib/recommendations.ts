@@ -1,0 +1,5 @@
+import {recommendationScore,type Signals} from './config';
+import type {Monument} from '../data/monuments';
+export type Candidate={monument:Monument;signals:Signals};
+// Only comparable evidence is ranked. Missing signals are never filled with favourable values.
+export function recommend(candidates:Candidate[]){return candidates.map(c=>({...c,...recommendationScore(c.signals)})).filter(c=>c.score!==null&&c.coverage>=.5).sort((a,b)=>b.score!-a.score!).slice(0,3).map(c=>({...c,reason:{vi:[c.signals.crowd!==null&&c.signals.crowd<40?'Lượng khách thấp':null,c.signals.minutes!==null?`${Math.ceil(c.signals.minutes)} phút di chuyển`:null,c.signals.open===true?'mở cửa khi đến':c.signals.open===false?'đóng cửa khi đến':null].filter(Boolean).join(', ')||'Gợi ý dựa trên các dữ liệu hiện có',en:[c.signals.crowd!==null&&c.signals.crowd<40?'Quiet':null,c.signals.minutes!==null?`${Math.ceil(c.signals.minutes)} min away`:null,c.signals.open===true?'open at arrival':c.signals.open===false?'closed at arrival':null].filter(Boolean).join(', ')||'Based on available evidence'}}))}

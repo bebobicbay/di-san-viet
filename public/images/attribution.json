@@ -1,0 +1,41 @@
+[
+  {
+    "file": "public/images/hue-ngo-mon.webp",
+    "title": "Ngọ Môn Huế - NKS.jpg",
+    "author": "NKSTTSSHNVN",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Ng%E1%BB%8D_M%C3%B4n_Hu%E1%BA%BF_-_NKS.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Ng%E1%BB%8D_M%C3%B4n_Hu%E1%BA%BF_-_NKS.jpg/1280px-Ng%E1%BB%8D_M%C3%B4n_Hu%E1%BA%BF_-_NKS.jpg",
+    "changes": "Resized by Wikimedia Commons; converted to WebP for web delivery.",
+    "width": 1280,
+    "height": 640,
+    "bytes": 152774
+  },
+  {
+    "file": "public/images/hoi-an.webp",
+    "title": "Hoi An Ancient Town.jpg",
+    "author": "Andre Hospers",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Hoi_An_Ancient_Town.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Hoi_An_Ancient_Town.jpg/1280px-Hoi_An_Ancient_Town.jpg",
+    "changes": "Resized by Wikimedia Commons; converted to WebP for web delivery.",
+    "width": 1280,
+    "height": 720,
+    "bytes": 373264
+  },
+  {
+    "file": "public/images/my-son.webp",
+    "title": "My Son Sanctuary, Vietnam, 2017 (52416230193).jpg",
+    "author": "JL Cogburn",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:My_Son_Sanctuary%2C_Vietnam%2C_2017_%2852416230193%29.jpg",
+    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/My_Son_Sanctuary%2C_Vietnam%2C_2017_%2852416230193%29.jpg/1280px-My_Son_Sanctuary%2C_Vietnam%2C_2017_%2852416230193%29.jpg",
+    "changes": "Resized by Wikimedia Commons; converted to WebP for web delivery.",
+    "width": 1280,
+    "height": 853,
+    "bytes": 254294
+  }
+]

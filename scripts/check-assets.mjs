@@ -1,0 +1,6 @@
+import {stat,readdir,readFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {gzipSync} from 'node:zlib';
+const LIMIT=250*1024*1024;let failed=false,totalPublic=0;
+async function scan(dir){let files;try{files=await readdir(dir,{withFileTypes:true})}catch{return}for(const file of files){const path=join(dir,file.name);if(file.isDirectory()){if(file.name==='cache')continue;await scan(path);continue}const s=await stat(path);if(path.startsWith('public'))totalPublic+=s.size;if(s.size>LIMIT){console.error(`FAIL: ${path} ${(s.size/1048576).toFixed(1)} MB > 250 MB`);failed=true}if(/\.glb$/.test(path)&&s.size>(/lod2/i.test(path)?1:3)*1048576)console.warn('WARN: model budget',path);if(/\.(mp3|wav|ogg)$/.test(path)&&s.size>1048576)console.warn('WARN: audio budget',path);if(/\.js$/.test(path)&&path.includes('static')){const gzip=gzipSync(await readFile(path));if(gzip.length>250*1024)console.warn(`WARN: JS chunk ${path}: ${Math.round(gzip.length/1024)} KB gzip (check whether lazy 3D/map)`);}}}
+await scan('public');await scan('.next');if(totalPublic>3*1048576)console.warn('WARN: total public assets exceed 3 MB; measure initial transfer separately');if(failed)process.exit(1);console.log(`Asset ceiling PASS. Public assets: ${(totalPublic/1048576).toFixed(2)} MB. Initial transfer requires browser measurement.`);

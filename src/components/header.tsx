@@ -1,0 +1,7 @@
+'use client';
+import Link from 'next/link';
+import {useLanguage} from './providers';
+import {Compass,Menu,X} from 'lucide-react';
+import {useState} from 'react';
+export function Brand(){return <Link className="brand" href="/" aria-label="Di sản Việt"><span className="brand-symbol">✳</span><span>DI SẢN VIỆT<small>HERITAGE ROUTE VIETNAM</small></span></Link>}
+export default function Header(){const {lang,setLang,t}=useLanguage();const [menu,setMenu]=useState(false);return <header className="header"><Brand/><nav className={menu?'navigation is-open':'navigation'} aria-label={t('Điều hướng chính','Main navigation')}><Link onClick={()=>setMenu(false)} href="/journey">{t('Hành trình di sản','The heritage journey')}</Link><Link onClick={()=>setMenu(false)} href="/#collection">{t('Điểm đến','Destinations')}</Link><Link onClick={()=>setMenu(false)} href="/#about">{t('Câu chuyện','Our story')}</Link></nav><div className="header-actions"><button className="language" onClick={()=>setLang(lang==='vi'?'en':'vi')} aria-label={t('Switch to English','Chuyển sang tiếng Việt')}><span className={lang==='vi'?'active':''}>VI</span><i>/</i><span className={lang==='en'?'active':''}>EN</span></button><Link href="/explore" className="header-explore"><Compass size={15}/>{t('Mở bản đồ','Explore map')}</Link><button className="menu-toggle icon-button" aria-label={t('Mở điều hướng','Toggle navigation')} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></div></header>}

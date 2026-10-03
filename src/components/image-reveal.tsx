@@ -1,0 +1,6 @@
+'use client';
+import {Canvas,useFrame,useLoader} from '@react-three/fiber';
+import {useMemo,useRef} from 'react';
+import * as THREE from 'three';
+function Ripple({src}:{src:string}){const texture=useLoader(THREE.TextureLoader,src);const ref=useRef<THREE.ShaderMaterial>(null);const uniforms=useMemo(()=>({uImage:{value:texture},uTime:{value:0},uMouse:{value:new THREE.Vector2(.5,.5)}}),[texture]);useFrame(({clock,pointer})=>{if(ref.current){ref.current.uniforms.uTime.value=clock.elapsedTime;ref.current.uniforms.uMouse.value.lerp(new THREE.Vector2(pointer.x*.5+.5,pointer.y*.5+.5),.1)}});return <mesh><planeGeometry args={[2,2]}/><shaderMaterial ref={ref} uniforms={uniforms} vertexShader="varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}" fragmentShader="uniform sampler2D uImage; uniform float uTime; uniform vec2 uMouse; varying vec2 vUv; void main(){vec2 delta=vUv-uMouse;float d=length(delta);vec2 uv=vUv+normalize(delta+0.0001)*sin(d*25.0-uTime*3.0)*0.012*exp(-d*3.0);vec4 c=texture2D(uImage,uv);gl_FragColor=vec4(c.rgb*0.82,1.0);}"/></mesh>}
+export default function ImageReveal({src}:{src:string}){return <div className="ripple-canvas" aria-hidden="true"><Canvas dpr={1} gl={{alpha:true,antialias:false}}><Ripple src={src}/></Canvas></div>}

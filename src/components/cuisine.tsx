@@ -1,0 +1,9 @@
+'use client';
+import type {Monument} from '@/data/monuments';
+import {useLanguage} from './providers';
+const SOURCES={hue:'https://vietnam.travel/things-to-do/hue-best-to-eat-palace-street',hoiAn:'https://vietnam.travel/node/99'};
+const dishes:Record<string,[string,string,string,string,string][]>={
+ 'dai-noi-hue':[['Bún bò Huế','Bún bò Huế','Món bún nước đậm vị gắn với Huế.','A richly flavoured noodle soup associated with Huế.',SOURCES.hue],['Bánh khoái','Bánh khoái','Bánh giòn kiểu Huế, ăn cùng rau và nước chấm.','A crisp Huế-style pancake served with greens and sauce.',SOURCES.hue],['Bánh bèo','Bánh bèo','Những chén bánh nhỏ trong ẩm thực Huế.','Small steamed rice cakes from Huế cuisine.',SOURCES.hue]],
+ 'hoi-an':[['Cao lầu','Cao lầu','Món ăn tiêu biểu của Hội An.','A signature dish of Hội An.',SOURCES.hoiAn],['Hoành thánh','Wontons','Món hoành thánh trong nét ẩm thực phố Hội.','Wontons are part of Hội An food culture.',SOURCES.hoiAn],['Bánh bao bánh vạc','White rose dumplings','Bánh được biết đến với tên gọi bông hồng trắng.','Dumplings known as white roses.',SOURCES.hoiAn]]
+};
+export default function Cuisine({site}:{site:Monument}){const {t}=useLanguage();const items=dishes[site.id]??[];return <div className="cuisine"><h3>{t('Hương vị địa phương','Taste the region')}</h3>{items.length?items.map(([vi,en,svi,sen,source])=><article key={vi}><h4>{t(vi,en)}</h4><p>{t(svi,sen)}</p><a className="source-link" href={source} target="_blank" rel="noreferrer">Vietnam Tourism · 02/10/2026</a></article>):<p>{t('Chưa có danh sách món ăn được xác minh.','No verified local food list is available.')}</p>}<h3>{t('Nhà hàng gần đây','Nearby restaurants')}</h3><p>{t('Chưa có dữ liệu nhà hàng được xác minh từ Google Places.','No verified restaurant data is available from Google Places.')}</p></div>}
